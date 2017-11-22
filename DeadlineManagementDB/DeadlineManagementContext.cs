@@ -48,15 +48,15 @@ namespace DeadlineManagementDB
          .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
          ;
             //-----------------------------Relations-------------------------------------------//
-            modelBuilder.Entity<Branch>()
-                .HasRequired<Company>(u => u.company)
-                .WithMany();
-            modelBuilder.Entity<Department>()
-            .HasRequired<Branch>(u => u.branches)
-            .WithMany();
-            modelBuilder.Entity<User>()
-        .HasRequired<Department>(u => u.department)
-        .WithMany();
+            //modelBuilder.Entity<Branch>()
+            //    .HasRequired<Company>(u => u.company)
+            //    .WithMany();
+            //modelBuilder.Entity<Department>()
+            //.HasRequired<Branch>(u => u.branches)
+            //.WithMany();
+        //    modelBuilder.Entity<User>()
+        //.HasRequired<Department>(u => u.department)
+        //.WithMany();
         //    modelBuilder.Entity<User>()
         //.HasRequired<Branch>(u => u.branch)
         //.WithMany();
