@@ -10,14 +10,17 @@ namespace DeadlineManagementDB.Supporting
 {
    public class Branch
     {
-        [Required]
+        public Branch() {
+            Departments = new List<Department>();
+        }
+
         [Key]
         public int Id { get; set; }
-        [Required]
+
         [Column(TypeName = "varchar")]
         [MaxLength(40)]
         public string Name { get; set; }
 
-        public virtual Company company { get; set; }
+        public ICollection<Department> Departments { get; set; }
     }
 }

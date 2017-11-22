@@ -9,14 +9,10 @@ namespace DeadlineManagementDB.Supporting
 {
     public class Department
     {
-        [Required]
-        [Key]
         public int Id { get; set; }
-        [Required]
+
         [Column(TypeName = "varchar")]
         [MaxLength(40)]
         public string Name { get; set; }
-
-        public virtual Branch branches { get; set; }
     }
 }
