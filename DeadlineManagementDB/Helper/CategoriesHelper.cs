@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DeadlineManagementDB.Supporting;
-using System.Data.Entity;
 using DeadlineManagementDB.FileUpload;
 
-namespace DeadlineManagementDB.Helper
-{
-   public class CategoriesHelper
+namespace DeadlineManagementDB.Helper {
+    public class CategoriesHelper
     {
         //public List<Branch> GetSubBranches(Company c)
         //{

@@ -38,7 +38,7 @@ namespace DeadlineManagmentSystem.Controllers
                 ViewBag.Filetype = CommonHelper.ToSelectItemList(ch.GetFileType());
                 FileUploaded fu = new FileUploaded();
                 fu.Dateofentery = DateTime.Today;
-                fu.filuploaded = new FileToUploadedDetail { Id = uh.GetFileDetail(Convert.ToInt32(productmodel.Branch), Convert.ToInt32(productmodel.Department)) }; ;
+                fu.filuploaded = new FileToUploadedDetail { Id = new CommonHelper().GetFileDetail(Convert.ToInt32(productmodel.Branch), Convert.ToInt32(productmodel.Department)) }; ;
 
                 if (!string.IsNullOrEmpty(file.FileName))
                   { try
@@ -72,7 +72,7 @@ namespace DeadlineManagmentSystem.Controllers
                    
                 //}
                 fu.user = new User { Id = 1 };
-                ufh.AddNewFile(fu);
+                ufh.Add(fu);
 
 
             }
@@ -85,7 +85,7 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "Branch";
             m.Caption = "- Select Branch -";
-            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetBranch(new Company { Id = id }));
+            m.Values = CommonHelper.ToSelectItemList(new BranchHelper().GetBranchesByCompanyId(id)); 
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
@@ -95,7 +95,7 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "Department";
             m.Caption = "- Select Department -";
-            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetDepartment(new Branch { Id = id }));
+            m.Values = CommonHelper.ToSelectItemList(new DepartmentHelper().GetDepartmentsByBranchId(id));
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }

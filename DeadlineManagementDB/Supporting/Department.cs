@@ -14,5 +14,7 @@ namespace DeadlineManagementDB.Supporting
         [Column(TypeName = "varchar")]
         [MaxLength(40)]
         public string Name { get; set; }
+
+        public virtual Branch Branch { get; set; }
     }
 }

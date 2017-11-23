@@ -27,43 +27,40 @@ namespace DeadlineManagementDB.Helper
             }
             return tempList;
         }
-        public List<Branch> GetBranch(Company c)
-        {
+        //public List<Branch> GetBranch(Company c)
+        //{
+        //    DeadlineManagementContext context = new DeadlineManagementContext();
+        //    using (context)
+
+        //        return (from sc in context.branches
+        //                            .Include(x => )
+        //                where sc.Id == c.Id
+        //                select sc).ToList();
+
+        //}
+        //public List<Department> GetDepartment(Branch c)
+        //{
+        //    DeadlineManagementContext context = new DeadlineManagementContext();
+        //    using (context)
+
+        //        return (from sc in context.departments
+        //                            .Include(x => x.branches)
+        //                where sc.Id == c.Id
+        //                select sc).ToList();
+
+        //}
+
+        public int GetFileDetail(int branch, int department) {
             DeadlineManagementContext context = new DeadlineManagementContext();
-            using (context)
+            using (context) {
 
-                return (from sc in context.branches
-                                    .Include(x => x.company)
-                        where sc.Id == c.Id
-                        select sc).ToList();
-
-        }
-        public List<Department> GetDepartment(Branch c)
-        {
-            DeadlineManagementContext context = new DeadlineManagementContext();
-            using (context)
-
-                return (from sc in context.departments
-                                    .Include(x => x.branches)
-                        where sc.Id == c.Id
-                        select sc).ToList();
-
-        }
-
-        public int GetFileDetail(int branch, int department)
-        {
-            DeadlineManagementContext context = new DeadlineManagementContext();
-            using (context)
-            {
-
-               return (Convert.ToInt32((from sc in context.filetouploadeddetails
-                              .Include(x => x.department.branches)
-                                         where sc.department.Id == department && sc.department.branches.Id == branch
+                return (Convert.ToInt32((from sc in context.filetouploadeddetails
+                               .Include(x => x.department.Branch)
+                                         where sc.department.Id == department && sc.department.Branch.Id == branch
                                          select sc.Id).FirstOrDefault()));
-                
+
             }
-            //public List<Branch> GetSubCategories(Branch c)
-            //{
+            //public List<Branch> GetSubCategories(Branch c) {
             //    DeadlineManagementContext context = new DeadlineManagementContext();
             //    using (context)
 
@@ -73,8 +70,7 @@ namespace DeadlineManagementDB.Helper
             //                select sc).ToList();
 
             //}
-            //  public List<Branch> GetSubCategories(Branch c)
-            //{
+            //public List<Branch> GetSubCategories(Branch c) {
             //    DeadlineManagementContext context = new DeadlineManagementContext();
             //    using (context)
 
@@ -82,7 +78,6 @@ namespace DeadlineManagementDB.Helper
             //                            .Include(x => x.company)
             //                where sc.Id == c.Id
             //                select sc).ToList();
-
             //}
         }
     }

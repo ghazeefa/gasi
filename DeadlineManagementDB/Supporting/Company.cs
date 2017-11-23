@@ -14,7 +14,6 @@ namespace DeadlineManagementDB.Supporting
             Branches = new List<Branch>();
         }
 
-        [Key]
         public int Id { get; set; }
 
         [Column(TypeName = "varchar")]

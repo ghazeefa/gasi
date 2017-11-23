@@ -78,12 +78,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileUpload\FileUploaded.cs" />
+    <Compile Include="Helper\BranchHelper.cs" />
     <Compile Include="Helper\CategoriesHelper.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="DeadlineManagementContext.cs" />
     <Compile Include="FileUpload\FileToUploadedDetail.cs" />
     <Compile Include="FileUpload\FileType.cs" />
+    <Compile Include="Helper\CompanyHelper.cs" />
+    <Compile Include="Helper\DepartmentHelper.cs" />
+    <Compile Include="Helper\FileUploadedHelper.cs" />
+    <Compile Include="Helper\IHelper.cs" />
     <Compile Include="Helper\UploadFileHelper.cs" />
+    <Compile Include="Helper\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\Branch.cs" />
     <Compile Include="Supporting\Company.cs" />
