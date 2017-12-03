@@ -1819,6 +1819,7 @@ section.forms .line {
 */
 .login-page {
   position: relative;
+  overflow:hidden;
 }
 
 .login-page::before {
@@ -1829,6 +1830,7 @@ section.forms .line {
   z-index: -1;
   background: url(../img/bg.jpg);
   background-size: cover;
+  transform:scale(1.1);
   -webkit-filter: blur(10px);
   filter: blur(10px);
   z-index: 1;

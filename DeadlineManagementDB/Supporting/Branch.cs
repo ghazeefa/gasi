@@ -10,8 +10,6 @@ namespace DeadlineManagementDB.Supporting
 {
    public class Branch
     {
-
-        [Key]
         public int Id { get; set; }
 
         [Column(TypeName = "varchar")]
