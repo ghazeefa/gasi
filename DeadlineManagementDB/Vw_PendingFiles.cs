@@ -12,11 +12,17 @@ namespace DeadlineManagementDB
     using System;
     using System.Collections.Generic;
     
-    public partial class tblToUpload
+    public partial class Vw_PendingFiles
     {
-        public int Id { get; set; }
-        public int department_Id { get; set; }
-        public int filetype_Id { get; set; }
+        public int PendingFilesId { get; set; }
+        public string FileName { get; set; }
+        public int FileCategory_Id { get; set; }
+        public string CategoryName { get; set; }
+        public string UnitName { get; set; }
+        public int FileType_Id { get; set; }
         public Nullable<System.DateTime> datetoupload { get; set; }
+        public int Branch_Id { get; set; }
+        public string CompanyName { get; set; }
+        public int DepartmentId { get; set; }
     }
 }

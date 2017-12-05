@@ -29,10 +29,12 @@ namespace DeadlineManagementDB
         public virtual DbSet<tblBranch> tblBranches { get; set; }
         public virtual DbSet<tblCompany> tblCompanies { get; set; }
         public virtual DbSet<tblDepartment> tblDepartments { get; set; }
-        public virtual DbSet<tblToUpload> tblToUploads { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblFileCategory> tblFileCategories { get; set; }
         public virtual DbSet<tblFileUploaded> tblFileUploadeds { get; set; }
         public virtual DbSet<Vw_FileUploaded> Vw_FileUploaded { get; set; }
+        public virtual DbSet<tblToUpload> tblToUploads { get; set; }
+        public virtual DbSet<Vw_UploadedFileEdit> Vw_UploadedFileEdit { get; set; }
+        public virtual DbSet<Vw_PendingFiles> Vw_PendingFiles { get; set; }
     }
 }

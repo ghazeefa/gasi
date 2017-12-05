@@ -32,6 +32,28 @@ namespace DeadlineManagementDB.Helper
             }
         }
 
+        public bool AddFileToUpload(tblToUpload f)
+        {
+
+
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+
+
+                using (context)
+                {
+                    context.tblToUploads.Add(f);
+                    context.SaveChanges();
+                    return true;
+                }
+
+
+
+            }
+        }
+
+
         public bool GetFilesUploaded(tblFileUploaded f)
         {
 

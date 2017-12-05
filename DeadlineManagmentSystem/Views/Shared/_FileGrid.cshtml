@@ -1,36 +1,23 @@
 ﻿@model IEnumerable<DeadlineManagmentSystem.Models.GridModel>
 
 @using GridMvc.Html
-@{
-    ViewBag.Title = "Details";
-}
-@{
-    Layout = null;
-}
-
-<h2>Details</h2>
-
-<div>
-
-    hiiii
-</div>
 
 
-<div class="code-cut" style="background-color:aqua;height:300px; ">
+<div class="code-cut" >
     @Html.Grid(Model).Columns(columns =>
 {
-    columns.Add(c => c.Id).Titled("Id").Filterable(true);
-    columns.Add(c => c.CompanyName).Titled("CompanyName").Filterable(true);
-    columns.Add(c => c.BranchName).Titled("BranchName").Filterable(true);
-    columns.Add(c => c.DepartmentName).Titled("DepartmentName").Filterable(true);
-    columns.Add(c => c.FileCategoryName).Titled("FileCategoryName").Filterable(true);
-    columns.Add(c => c.FileTypeName).Titled("FileTypeName").Filterable(true);
-    columns.Add(c => c.Path).Titled("Path").Filterable(true);
+    columns.Add(c => c.Id).Titled("File Id");
+    columns.Add(c => c.CompanyName).Titled("Company");
+    columns.Add(c => c.BranchName).Titled("Branch");
+    columns.Add(c => c.DepartmentName).Titled("Department");
+    columns.Add(c => c.FileCategoryName).Titled("File Category");
+    columns.Add(c => c.FileTypeName).Titled("File Type");
+    //columns.Add(c => c.Path).Titled("Path").Filterable(true);
     columns.Add()
     .Encoded(false)
     .Sanitized(false)
     .SetWidth(30)
     .RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.Id }));
 
-}).WithPaging(10).Sortable(true)
+}).WithPaging(2)
 </div>  

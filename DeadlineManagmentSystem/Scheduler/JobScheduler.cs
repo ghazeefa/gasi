@@ -13,9 +13,40 @@ namespace DeadlineManagmentSystem.Scheduler
          {
             IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
             scheduler.Start();
+
             IJobDetail jobDetail = JobBuilder.Create<EmailJob>()
     .WithIdentity("theJob")
     .Build();
+            IJobDetail firstJob = JobBuilder.Create<DayJob>()
+               .WithIdentity("firstJob")
+               .Build();
+
+            ITrigger firstTrigger = TriggerBuilder.Create()
+                             .WithIdentity("firstTrigger")
+                             .StartNow()
+                              .WithCronSchedule("0 0/1 * * * ?")
+                             .Build();
+
+
+            //IJobDetail secondJob = JobBuilder.Create<WeekJob>()
+            //               .WithIdentity("secondJob")
+            //               .Build();
+
+            //ITrigger secondTrigger = TriggerBuilder.Create()
+            //                 .WithIdentity("secondTrigger")
+            //                 .StartNow()
+            //                  .WithCronSchedule("0/10 * * * * ?")
+            //                 .Build();
+
+            scheduler.ScheduleJob(firstJob, firstTrigger);
+            //scheduler.ScheduleJob(secondJob, secondTrigger);
+            //IJobDetail firstJob = JobBuilder.Create<FirstJob>()
+            //   .WithIdentity("firstJob")
+            //   .Build();
+            //IJobDetail secondJob = JobBuilder.Create<SecondJob>()
+            //   .WithIdentity("secondJob")
+            //   .Build();
+
 
             ITrigger TweentySecondTrigger = TriggerBuilder.Create()
                .WithIdentity("TweentySecondTrigger")
@@ -24,6 +55,13 @@ namespace DeadlineManagmentSystem.Scheduler
                // start immediately
                .StartAt(DateBuilder.DateOf(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year))
                .Build();
+            ITrigger TenSecondTrigger = TriggerBuilder.Create()
+           .WithIdentity("TweentySecondTrigger")
+           // fires 
+           .WithCronSchedule("0/10 * * * * ?")
+           // start immediately
+           .StartAt(DateBuilder.DateOf(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year))
+           .Build();
             //EveryDay Trigger
             ITrigger everydayTrigger = TriggerBuilder.Create()
                 .WithIdentity("everydayTrigger")

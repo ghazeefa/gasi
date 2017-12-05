@@ -88,7 +88,7 @@ namespace DeadlineManagmentSystem.Controllers
         public ActionResult IndexGrid(String param)
         {
             // Only grid string query values will be visible here.
-            return PartialView("_IndexGrid", uh.GetUploadedFile());
+            return PartialView("_IndexGrid", uh.GetUploadedFiles());
         }
         [HttpGet]
         public ActionResult Branch(int id)
@@ -132,13 +132,27 @@ namespace DeadlineManagmentSystem.Controllers
             //}
 
 
+
             //GridModel m = new DDLModel();
             //m.Name = "FileType";
             //m.Caption = "- Select File Type -";
             //m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetFileType(id));
 
-            List<Vw_FileUploaded> model = uh.GetUploadedFile();
-            return PartialView("~/Views/Shared/_FileGrid.cshtml", model);
+            //List<Vw_FileUploaded> model = uh.GetUploadedFile();
+            List<GridModel> gm = new List<GridModel>();
+            uh.GetUploadedFiles().ToList().ForEach(X =>
+            {
+                gm.Add(new GridModel
+                {
+                    BranchName = X.BranchName,
+                    CompanyName = X.CompanyName,
+                    Id = X.Id,
+                    DepartmentName = X.DepartmentName,
+                    FileCategoryName = X.FileCategoryName,
+                    FileTypeName = X.FileTypeName
+                });
+            });
+            return PartialView("~/Views/Shared/_FileGrid.cshtml", gm);
             //return PartialView("~/Views/Shared/_FileGrid.cshtml", model);
 
         }

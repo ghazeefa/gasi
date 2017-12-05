@@ -32,6 +32,24 @@ namespace DeadlineManagementDB.Helper
             }
 
         }
+        public List<tblDepartment> GetDepartmentdata()
+        {
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+                return (from a in context.tblDepartments select a).ToList();
+            }
+
+        }
+        public List<tbl_FileType> GetFileType()
+        {
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+                return (from a in context.tbl_FileType select a).ToList();
+            }
+
+        }
         public List<tblFileCategory> GetFileCategory()
         {
             ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();

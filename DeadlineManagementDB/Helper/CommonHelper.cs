@@ -39,9 +39,9 @@ namespace DeadlineManagementDB.Helper
 
         //}
 
-        public int GetUserexists(string name, string password)
+        public string GetUserexists(string name, string password)
         {
-            int id = 0;
+            string username ;
             ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
             using (context)
             {
@@ -49,10 +49,28 @@ namespace DeadlineManagementDB.Helper
                                 where u.FirstName == name && u.Password == password
                                 select u
                                  ).ToList().FirstOrDefault();
-                id = userlist.Id;
+                username = userlist.SecondName;
 
             }
-            return id;
+            return username;
+
+
+
+        }
+
+
+        public List<Vw_UploadedFileEdit> FindUploadedfile(int f)
+        {
+            
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+               return(from a in context.Vw_UploadedFileEdit
+                                             where a.FileUploadedId == f
+                                             select a).ToList();
+
+            }
+             
 
 
 
@@ -103,13 +121,37 @@ namespace DeadlineManagementDB.Helper
 
             }
         }
-        public List<Vw_FileUploaded> GetUploadedFile()
+        public IEnumerable<Vw_FileUploaded> GetUploadedFiles()
         {
             ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
             using (context)
             {
-                return (from sc in context.Vw_FileUploaded
+                return context.Vw_FileUploaded.ToList().AsEnumerable();
+
+            }
+        }
+
+        public List<Vw_PendingFiles> GetPendingFiles(int filecategory  )
+        {
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+
+                return (from sc in context.Vw_PendingFiles
+                        where sc.FileCategory_Id== filecategory
                         select sc).ToList();
+
+            }
+        }
+        public int GetBranchByDepartment(int departid)
+        {
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+
+                return (from sc in context.tblDepartments
+                        where sc.Id == departid
+                        select sc.Branch_Id).FirstOrDefault();
 
             }
         }

@@ -18,10 +18,11 @@ namespace DeadlineManagmentSystem.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection data)
         {
-            int userid = h.GetUserexists(data["name"], data["Password"]);
-            if (userid != 0)
+            string username= h.GetUserexists(data["name"], data["Password"]);
+            if (username!= null)
             {
-                return RedirectToAction("index", "UploadFileModel");
+                Session.Add(WebUtil.CURRENT_USER, username);
+                return RedirectToAction("index", "Display");
 
             }
             return View();

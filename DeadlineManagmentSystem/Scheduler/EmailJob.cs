@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Quartz;
+using Quartz.Impl;
 using System.Net;
 using System.Net.Mail;
 
@@ -13,7 +14,9 @@ namespace DeadlineManagmentSystem.Scheduler
 
         public void Execute(IJobExecutionContext context)
         {
-             
+
+            var yourJobName = context.JobDetail.Key.Name;
+
             using (var message = new MailMessage("ghazeefafatimacs@gmail.com", "user@live.co.uk"))
             {
                 message.Subject = "Test";

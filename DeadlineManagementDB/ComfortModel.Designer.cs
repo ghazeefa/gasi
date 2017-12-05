@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Deadline system\Frontend\DeadlineManagmentSystem\DeadlineManagementDB\ComfortModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Deadline system\New folder\DeadlineManagmentSystem\DeadlineManagmentSystem\DeadlineManagementDB\ComfortModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

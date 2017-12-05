@@ -447,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DisplayController.cs" />
     <Compile Include="Controllers\FileTouploadController.cs" />
     <Compile Include="Controllers\SchedulorController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
@@ -456,12 +457,20 @@
     </Compile>
     <Compile Include="Models\DDLModel.cs" />
     <Compile Include="Models\FileTobeUploadModel.cs" />
+    <Compile Include="Models\FileUploadedEditModel.cs" />
     <Compile Include="Models\GridModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UploadFileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduler\Annual.cs" />
+    <Compile Include="Scheduler\BiAnnual.cs" />
     <Compile Include="Scheduler\EmailJob.cs" />
+    <Compile Include="Scheduler\DayJob.cs" />
     <Compile Include="Scheduler\JobScheduler.cs" />
+    <Compile Include="Scheduler\MonthJob.cs" />
+    <Compile Include="Scheduler\QuaterlyJob.cs" />
+    <Compile Include="Scheduler\WeekJob.cs" />
+    <Compile Include="WebUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -485,6 +494,8 @@
     <Content Include="Views\Shared\_IndexGrid.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Display\Index.cshtml" />
+    <Content Include="Views\Display\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

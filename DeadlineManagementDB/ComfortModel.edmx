@@ -5,11 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ComfortComplianceDeadlineDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.tbl_FileType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tbl_FileType">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FileCategory_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -36,11 +40,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Branch_Id" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.tblFileCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblFileCategory">
           <Key>
             <PropertyRef Name="Id" />
+            
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tblFileUploaded">
@@ -60,6 +67,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="department_Id" Type="int" Nullable="false" />
           <Property Name="filetype_Id" Type="int" Nullable="false" />
+          <Property Name="datetoupload" Type="datetime" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -92,15 +100,72 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
           <Property Name="FileCategoryName" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Path" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_PendingFiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_PendingFiles">
+          <Key>
+            <PropertyRef Name="PendingFilesId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="FileCategory_Id" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="UnitName" />
+            <PropertyRef Name="FileType_Id" />
+            <PropertyRef Name="Branch_Id" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="PendingFilesId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileCategory_Id" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FileType_Id" Type="int" Nullable="false" />
+          <Property Name="datetoupload" Type="datetime" />
+          <Property Name="Branch_Id" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_UploadedFileEdit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_UploadedFileEdit">
+          <Key>
+            <PropertyRef Name="FileUploadedId" />
+            <PropertyRef Name="FileTypeId" />
+            <PropertyRef Name="FileCategoryId" />
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="FileUploadedId" Type="int" Nullable="false" />
+          <Property Name="Dateofentery" Type="datetime" />
+          <Property Name="Path" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UploadToUploadId" Type="int" />
+          <Property Name="FileTypeId" Type="int" Nullable="false" />
+          <Property Name="FileCategoryId" Type="int" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ComfortComplianceDeadlineDBModelStoreContainer">
-          <EntitySet Name="tbl_FileType" EntityType="Self.tbl_FileType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBranch" EntityType="Self.tblBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDepartment" EntityType="Self.tblDepartment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblFileCategory" EntityType="Self.tblFileCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFileUploaded" EntityType="Self.tblFileUploaded" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblToUpload" EntityType="Self.tblToUpload" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FileType" EntityType="Self.tbl_FileType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_FileType].[Id] AS [Id], 
+    [tbl_FileType].[Name] AS [Name], 
+    [tbl_FileType].[FileCategory_Id] AS [FileCategory_Id]
+    FROM [dbo].[tbl_FileType] AS [tbl_FileType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblFileCategory" EntityType="Self.tblFileCategory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblFileCategory].[Id] AS [Id], 
+    [tblFileCategory].[Name] AS [Name]
+    FROM [dbo].[tblFileCategory] AS [tblFileCategory]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Vw_FileUploaded" EntityType="Self.Vw_FileUploaded" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Vw_FileUploaded].[Id] AS [Id], 
@@ -112,6 +177,33 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
     [Vw_FileUploaded].[FileCategoryName] AS [FileCategoryName], 
     [Vw_FileUploaded].[Path] AS [Path]
     FROM [dbo].[Vw_FileUploaded] AS [Vw_FileUploaded]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vw_PendingFiles" EntityType="Self.Vw_PendingFiles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_PendingFiles].[PendingFilesId] AS [PendingFilesId], 
+    [Vw_PendingFiles].[FileName] AS [FileName], 
+    [Vw_PendingFiles].[FileCategory_Id] AS [FileCategory_Id], 
+    [Vw_PendingFiles].[CategoryName] AS [CategoryName], 
+    [Vw_PendingFiles].[UnitName] AS [UnitName], 
+    [Vw_PendingFiles].[FileType_Id] AS [FileType_Id], 
+    [Vw_PendingFiles].[datetoupload] AS [datetoupload], 
+    [Vw_PendingFiles].[Branch_Id] AS [Branch_Id], 
+    [Vw_PendingFiles].[CompanyName] AS [CompanyName], 
+    [Vw_PendingFiles].[DepartmentId] AS [DepartmentId]
+    FROM [dbo].[Vw_PendingFiles] AS [Vw_PendingFiles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vw_UploadedFileEdit" EntityType="Self.Vw_UploadedFileEdit" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_UploadedFileEdit].[FileUploadedId] AS [FileUploadedId], 
+    [Vw_UploadedFileEdit].[Dateofentery] AS [Dateofentery], 
+    [Vw_UploadedFileEdit].[Path] AS [Path], 
+    [Vw_UploadedFileEdit].[UploadToUploadId] AS [UploadToUploadId], 
+    [Vw_UploadedFileEdit].[FileTypeId] AS [FileTypeId], 
+    [Vw_UploadedFileEdit].[FileCategoryId] AS [FileCategoryId], 
+    [Vw_UploadedFileEdit].[DepartmentId] AS [DepartmentId], 
+    [Vw_UploadedFileEdit].[BranchId] AS [BranchId], 
+    [Vw_UploadedFileEdit].[CompanyId] AS [CompanyId]
+    FROM [dbo].[Vw_UploadedFileEdit] AS [Vw_UploadedFileEdit]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -149,14 +241,6 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Branch_Id" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblToUpload">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="department_Id" Type="Int32" Nullable="false" />
-          <Property Name="filetype_Id" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -173,11 +257,13 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
           <EntitySet Name="tblBranches" EntityType="Self.tblBranch" />
           <EntitySet Name="tblCompanies" EntityType="Self.tblCompany" />
           <EntitySet Name="tblDepartments" EntityType="Self.tblDepartment" />
-          <EntitySet Name="tblToUploads" EntityType="Self.tblToUpload" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblFileCategories" EntityType="ComfortComplianceDeadlineDBModel.tblFileCategory" />
           <EntitySet Name="tblFileUploadeds" EntityType="ComfortComplianceDeadlineDBModel.tblFileUploaded" />
           <EntitySet Name="Vw_FileUploaded" EntityType="ComfortComplianceDeadlineDBModel.Vw_FileUploaded" />
+          <EntitySet Name="tblToUploads" EntityType="ComfortComplianceDeadlineDBModel.tblToUpload" />
+          <EntitySet Name="Vw_UploadedFileEdit" EntityType="ComfortComplianceDeadlineDBModel.Vw_UploadedFileEdit" />
+          <EntitySet Name="Vw_PendingFiles" EntityType="ComfortComplianceDeadlineDBModel.Vw_PendingFiles" />
         </EntityContainer>
         <EntityType Name="tblFileCategory">
           <Key>
@@ -213,6 +299,57 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
           <Property Name="FileTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FileCategoryName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblToUpload">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_Id" Type="Int32" Nullable="false" />
+          <Property Name="filetype_Id" Type="Int32" Nullable="false" />
+          <Property Name="datetoupload" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Vw_UploadedFileEdit">
+          <Key>
+            <PropertyRef Name="FileUploadedId" />
+            <PropertyRef Name="FileTypeId" />
+            <PropertyRef Name="FileCategoryId" />
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="FileUploadedId" Type="Int32" Nullable="false" />
+          <Property Name="Dateofentery" Type="DateTime" Precision="3" />
+          <Property Name="Path" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UploadToUploadId" Type="Int32" />
+          <Property Name="FileTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FileCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vw_PendingFiles">
+          <Key>
+            <PropertyRef Name="PendingFilesId" />
+            <PropertyRef Name="FileName" />
+            <PropertyRef Name="FileCategory_Id" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="UnitName" />
+            <PropertyRef Name="FileType_Id" />
+            <PropertyRef Name="Branch_Id" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="PendingFilesId" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileCategory_Id" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="FileType_Id" Type="Int32" Nullable="false" />
+          <Property Name="datetoupload" Type="DateTime" Precision="3" />
+          <Property Name="Branch_Id" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -252,15 +389,6 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Branch_Id" ColumnName="Branch_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblToUploads">
-            <EntityTypeMapping TypeName="ComfortComplianceDeadlineDBModel.tblToUpload">
-              <MappingFragment StoreEntitySet="tblToUpload">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="department_Id" ColumnName="department_Id" />
-                <ScalarProperty Name="filetype_Id" ColumnName="filetype_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -306,6 +434,47 @@ warning 6002: The table/view 'ComfortComplianceDeadlineDB.dbo.Vw_FileUploaded' d
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="Dateofentery" ColumnName="Dateofentery" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblToUploads">
+            <EntityTypeMapping TypeName="ComfortComplianceDeadlineDBModel.tblToUpload">
+              <MappingFragment StoreEntitySet="tblToUpload">
+                <ScalarProperty Name="datetoupload" ColumnName="datetoupload" />
+                <ScalarProperty Name="filetype_Id" ColumnName="filetype_Id" />
+                <ScalarProperty Name="department_Id" ColumnName="department_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_UploadedFileEdit">
+            <EntityTypeMapping TypeName="ComfortComplianceDeadlineDBModel.Vw_UploadedFileEdit">
+              <MappingFragment StoreEntitySet="Vw_UploadedFileEdit">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="FileCategoryId" ColumnName="FileCategoryId" />
+                <ScalarProperty Name="FileTypeId" ColumnName="FileTypeId" />
+                <ScalarProperty Name="UploadToUploadId" ColumnName="UploadToUploadId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Dateofentery" ColumnName="Dateofentery" />
+                <ScalarProperty Name="FileUploadedId" ColumnName="FileUploadedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_PendingFiles">
+            <EntityTypeMapping TypeName="ComfortComplianceDeadlineDBModel.Vw_PendingFiles">
+              <MappingFragment StoreEntitySet="Vw_PendingFiles">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Branch_Id" ColumnName="Branch_Id" />
+                <ScalarProperty Name="datetoupload" ColumnName="datetoupload" />
+                <ScalarProperty Name="FileType_Id" ColumnName="FileType_Id" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="FileCategory_Id" ColumnName="FileCategory_Id" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PendingFilesId" ColumnName="PendingFilesId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

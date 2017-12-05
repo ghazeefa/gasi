@@ -1,14 +1,19 @@
 ﻿@using DeadlineManagmentSystem.Models
 
 @{
-    ViewBag.Title = "Register";
 
     List<SelectListItem> branch = ViewBag.Branch;
-    List<SelectListItem> fileCategory = ViewBag.FileCategory; 
+    List<SelectListItem> fileCategory = ViewBag.FileCategory;
+    List<SelectListItem> department = ViewBag.Department;
+    List<SelectListItem> fileType = ViewBag.FileType;
+    //    List<SelectListItem> branch = ViewBag.Branch;
+    //List<SelectListItem> fileCategory = ViewBag.FileCategory; 
 }
-@model UploadFileModel
-@{
-    ViewBag.Title = "UPLOAD FILE";
+
+@model FileUploadedEditModel
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit";
 }
 
 <section class="forms">
@@ -28,25 +33,26 @@
                     </div>
                     <div class="card-body">
                         <p>File form in order to upload file</p>
-                        @using (Html.BeginForm("index", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                        @using (Html.BeginForm("edit", "Display", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
                         {
 
+                            @Html.HiddenFor(a => a.fileUploadedId)
                             @*<div class="form-group row">
-                                <label class="col-sm-3 form-control-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
+                                    <label class="col-sm-3 form-control-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 form-control-label">Password</label>
-                                <div class="col-sm-9">
-                                    <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
-                                </div>
-                            </div>*@
+                                <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
+                                    </div>
+                                </div>*@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">File Type</label>
                                 <div class="col-sm-9 select">
-                                    @Html.DropDownList("FileCategoryId", fileCategory, "- Select File Type -", new { @class = "form-control" })
+                                    @Html.DropDownListFor(x => x.FileCategoryId, fileCategory, "- Select File Type -", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(x => x.FileCategoryId, "", new { @class = "form-text" })
                                     @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                     @*<small class="form-text">Selection is must in order to save form</small>*@
@@ -56,6 +62,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">File Type</label>
                                 <div class="col-sm-9 select" id="filetype">
+                                    @Html.DropDownListFor(x => x.FileTypeId, fileType, "- Select File Type -", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(x => x.FileTypeId, "", new { @class = "form-text" })
                                     @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                     @*<small class="form-text">Selection is must in order to save form</small>*@
@@ -66,8 +73,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">BRANCH</label>
                                 <div class="col-sm-9 select">
-                                    @Html.DropDownList("Branch", branch, "- Select Branch -", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(x => x.Branch, "", new { @class = "form-text" })
+                                    @Html.DropDownListFor(x => x.BranchId, branch, "- Select Branch -", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.BranchId, "", new { @class = "form-text" })
                                     @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                     @*<small class="form-text">Selection is must in order to save form</small>*@
                                 </div>
@@ -76,6 +83,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">DEPART</label>
                                 <div class="col-sm-9 select" id="department">
+                                    @Html.DropDownListFor(x => x.DepartmentId, department, "- Select Branch -", new { @class = "form-control" })
 
                                     @Html.ValidationMessageFor(x => x.DepartmentId, "", new { @class = "form-text" })
 
@@ -102,14 +110,14 @@
             @*<div id="calltogrid" >
 
 
-            </div>*@
+                </div>*@
         </div>
 
     </div>
 </section>
 
 @section myScript{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(function () {
         $.ajax(
                     {
@@ -139,7 +147,7 @@
         //        //$("#dialogsec").modal();
 
         //    });
-       
+
         $("#Branch").change(function () {
             var selectedID = $(this).val();
             //var cid = $("#Company").select("option:selected").val();
@@ -155,7 +163,7 @@
                 $("#department").html(result2);
             });
         });
-         
+
 
         $("#FileCategoryId").change(function () {
             var selectedID = $(this).val();
@@ -187,7 +195,7 @@
         //            alert("heloo");
         //        });
         //    });
-       
+
 
         });
     </script>
