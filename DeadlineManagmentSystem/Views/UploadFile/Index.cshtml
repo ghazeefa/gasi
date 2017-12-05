@@ -44,10 +44,10 @@
                                 </div>
                             </div>*@
                             <div class="form-group row">
-                                <label class="col-sm-3 form-control-label">File Type</label>
+                                <label class="col-sm-3 form-control-label">File Category</label>
                                 <div class="col-sm-9 select">
-                                    @Html.DropDownList("FileCategoryId", fileCategory, "- Select File Type -", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(x => x.FileCategoryId, "", new { @class = "form-text" })
+                                    @Html.DropDownList("FileCategory", fileCategory, "- Select File Type -", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.FileCategory, "", new { @class = "form-text" })
                                     @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                     @*<small class="form-text">Selection is must in order to save form</small>*@
                                 </div>
@@ -56,7 +56,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">File Type</label>
                                 <div class="col-sm-9 select" id="filetype">
-                                    @Html.ValidationMessageFor(x => x.FileTypeId, "", new { @class = "form-text" })
+                                    @Html.ValidationMessageFor(x => x.FileType, "", new { @class = "form-text" })
                                     @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                     @*<small class="form-text">Selection is must in order to save form</small>*@
                                 </div>
@@ -77,7 +77,7 @@
                                 <label class="col-sm-3 form-control-label">DEPART</label>
                                 <div class="col-sm-9 select" id="department">
 
-                                    @Html.ValidationMessageFor(x => x.DepartmentId, "", new { @class = "form-text" })
+                                    @Html.ValidationMessageFor(x => x.Department, "", new { @class = "form-text" })
 
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
         });
          
 
-        $("#FileCategoryId").change(function () {
+        $("#FileCategory").change(function () {
             var selectedID = $(this).val();
             //var cid = $("#Company").select("option:selected").val();
             //alert(cid);

@@ -10,9 +10,10 @@ namespace DeadlineManagmentSystem.Controllers
     public class UserController : Controller
     {
         // GET: User
-        CommonHelper h = new CommonHelper();
+        UserHelper h = new UserHelper();
         public ActionResult Index()
         {
+            h.GetAll();
             return View();
         }
         [HttpPost]

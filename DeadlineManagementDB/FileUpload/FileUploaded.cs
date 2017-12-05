@@ -10,20 +10,16 @@ namespace DeadlineManagementDB.FileUpload
 {
     public class FileUploaded
     {
-
-        [Key]
         public int Id { get; set; }
 
         [Column(TypeName = "varchar")]
-        [MaxLength(100)]
+        //[MaxLength(100)]
         public string Path { get; set; }
 
-        public DateTime Dateofentery { get; set; }
+        public DateTime DateOfEntery { get; set; }
 
-        public virtual FileToUploadedDetail filuploaded { get; set; }
+        public virtual FileToUploadedDetail FileUploadedDetail { get; set; }
 
-        public Nullable<DateTime> Dateentered { get; set; }
-
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
     }
 }

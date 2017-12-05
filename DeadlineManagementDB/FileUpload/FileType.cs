@@ -16,7 +16,9 @@ namespace DeadlineManagementDB.FileUpload
         [MaxLength(40)]
         public string Name { get; set; }//Leaves
 
-        public int ReviseagainMonths { get; set; }//1
+        public virtual FileCategory FileCategory { get; set; }
+
+        //public int ReviseagainMonths { get; set; }//1
 
 
     }

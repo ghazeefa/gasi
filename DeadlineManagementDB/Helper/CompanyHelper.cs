@@ -14,27 +14,27 @@ namespace DeadlineManagementDB.Helper {
         public void Add(Company model) {
             using (ctx) {
                
-                ctx.companies.Add(model);
+                ctx.Companies.Add(model);
                 ctx.SaveChanges();
             }
         }
 
         public ICollection<Company> GetAll() {
-            return ctx.companies.Include(x => x.Branches).ToList();
+            return ctx.Companies.Include(x => x.Branches).ToList();
         }
 
         public Company GetById(int Id) {
-            return ctx.companies.Include(x => x.Branches).FirstOrDefault(x => x.Id == Id);
+            return ctx.Companies.Include(x => x.Branches).FirstOrDefault(x => x.Id == Id);
         }
 
         public void Remove(Company model) {
             using (ctx) {
                 var found = GetById(model.Id);
                 foreach (var branch in found.Branches) {
-                    ctx.branches.Remove(branch);
+                    ctx.Branches.Remove(branch);
                     ctx.SaveChanges();
                 }
-                ctx.companies.Remove(found);
+                ctx.Companies.Remove(found);
                 ctx.SaveChanges();
             }
         }

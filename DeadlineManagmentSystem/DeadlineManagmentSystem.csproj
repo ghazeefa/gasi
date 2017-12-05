@@ -471,14 +471,6 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UploadFileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduler\Annual.cs" />
-    <Compile Include="Scheduler\BiAnnual.cs" />
-    <Compile Include="Scheduler\EmailJob.cs" />
-    <Compile Include="Scheduler\DayJob.cs" />
-    <Compile Include="Scheduler\JobScheduler.cs" />
-    <Compile Include="Scheduler\MonthJob.cs" />
-    <Compile Include="Scheduler\QuaterlyJob.cs" />
-    <Compile Include="Scheduler\WeekJob.cs" />
     <Compile Include="WebUtil.cs" />
   </ItemGroup>
   <ItemGroup>

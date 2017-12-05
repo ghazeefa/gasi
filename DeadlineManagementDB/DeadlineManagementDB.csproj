@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -45,8 +45,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -79,94 +77,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComfortModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ComfortModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComfortModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComfortModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ComfortModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="FileUpload\FileCategory.cs" />
     <Compile Include="FileUpload\FileUploaded.cs" />
+    <Compile Include="Helper\BranchHelper.cs" />
     <Compile Include="Helper\CategoriesHelper.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
+    <Compile Include="DeadlineManagementContext.cs" />
     <Compile Include="FileUpload\FileToUploadedDetail.cs" />
     <Compile Include="FileUpload\FileType.cs" />
-    <Compile Include="Helper\UploadFileHelper.cs" />
+    <Compile Include="Helper\CompanyHelper.cs" />
+    <Compile Include="Helper\DepartmentHelper.cs" />
+    <Compile Include="Helper\FileCategoryHelper.cs" />
+    <Compile Include="Helper\FileToUploadedDetailHelper.cs" />
+    <Compile Include="Helper\FileTypeHelper.cs" />
+    <Compile Include="Helper\FileUploadedHelper.cs" />
+    <Compile Include="Helper\IHelper.cs" />
+    <Compile Include="Helper\UserHelper.cs" />
+    <Compile Include="Migrations\201712031729444_InitialCreate.cs" />
+    <Compile Include="Migrations\201712031729444_InitialCreate.Designer.cs">
+      <DependentUpon>201712031729444_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712031745348_filetype_updated.cs" />
+    <Compile Include="Migrations\201712031745348_filetype_updated.Designer.cs">
+      <DependentUpon>201712031745348_filetype_updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\Branch.cs" />
     <Compile Include="Supporting\Company.cs" />
     <Compile Include="Supporting\Department.cs" />
-    <Compile Include="tblBranch.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCompany.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblDepartment.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblFileCategory.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblFileUploaded.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblToUpload.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUser.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tbl_FileType.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Users\User.cs" />
-    <Compile Include="Vw_FileUploaded.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vw_PendingFiles.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vw_UploadedFileEdit.cs">
-      <DependentUpon>ComfortModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="ComfortModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ComfortModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ComfortModel.edmx.diagram">
-      <DependentUpon>ComfortModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ComfortModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ComfortModel.edmx</DependentUpon>
-      <LastGenOutput>ComfortModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ComfortModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ComfortModel.edmx</DependentUpon>
-      <LastGenOutput>ComfortModel.cs</LastGenOutput>
-    </Content>
+    <EmbeddedResource Include="Migrations\201712031729444_InitialCreate.resx">
+      <DependentUpon>201712031729444_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712031745348_filetype_updated.resx">
+      <DependentUpon>201712031745348_filetype_updated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,21 +10,19 @@ namespace DeadlineManagementDB.Users
 {
     public class User
     {
-       
-        [Key]
         public int Id { get; set; }
-      
+
         [Column(TypeName = "varchar")]
         [MaxLength(20)]
         public string FirstName { get; set; }
         [Column(TypeName = "varchar")]
         [MaxLength(20)]
         public string SecondName { get; set; }
+
         [Column(TypeName = "varchar")]
         [MaxLength(20)]
         public string Password { get; set; }
-      
-        public virtual Department department { get; set; }
+        public virtual Department Department { get; set; }
 
         //[Required]
         //public virtual Branch branch { get; set; }

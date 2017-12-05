@@ -11,15 +11,15 @@ namespace DeadlineManagementDB.FileUpload
 {
   public class FileToUploadedDetail
     {
-
+ 
         public int Id { get; set; }
-        public Nullable<DateTime> Datetobeentery { get; set; }
+        public Nullable<DateTime> DateToBeEntery { get; set; }
 
-        public virtual FileType filetype { get; set; }
+        public virtual FileType FileType { get; set; }
         //[Required]
         //public virtual Branch branch { get; set; }
 
-        public virtual Department department { get; set; }
+        public virtual Department Department { get; set; }
         //[Required]
         //public virtual Branch branch{ get; set; }
 

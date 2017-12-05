@@ -1,5 +1,4 @@
-﻿using DeadlineManagmentSystem.Scheduler;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +13,7 @@ namespace DeadlineManagmentSystem
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            JobScheduler.Start();
+            //JobScheduler.Start();
         }
     }
 }

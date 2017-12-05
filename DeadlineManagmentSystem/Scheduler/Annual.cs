@@ -8,13 +8,15 @@ using System.Net;
 using System.Net.Mail;
 using DeadlineManagementDB;
 using DeadlineManagementDB.Helper;
+using DeadlineManagementDB.FileUpload;
+
 namespace DeadlineManagmentSystem.Scheduler
 {
     public class Annual:IJob
     {
 
         CommonHelper h = new CommonHelper();
-        UploadFileHelper fh = new UploadFileHelper();
+        FileUploadedHelper fileUploadedHelper = new FileUploadedHelper();
         public void Execute(IJobExecutionContext context)
         {
 
@@ -74,7 +76,7 @@ namespace DeadlineManagmentSystem.Scheduler
             List<Vw_PendingFiles> a = h.GetPendingFiles(6);
             for (int i = 0; i < a.Count; i++)
             {
-                tblToUpload f = new tblToUpload();
+                FileUploaded f = new FileUploaded();
                 
                 f.department_Id = a[i].Branch_Id;
                 f.filetype_Id = a[i].FileType_Id;

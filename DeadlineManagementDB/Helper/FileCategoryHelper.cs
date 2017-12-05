@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using DeadlineManagementDB.FileUpload;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using DeadlineManagementDB.Supporting;
-using DeadlineManagementDB.FileUpload;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DeadlineManagementDB.Helper {
-    public class CategoriesHelper : IHelper<FileCategory> {
+    public class FileCategoryHelper : IHelper<FileCategory> {
         private DeadlineManagementContext ctx = new DeadlineManagementContext();
         public void Add(FileCategory model) {
-            using (ctx) {
-                ctx.FileCategories.Add(model);
-                ctx.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
 
         public ICollection<FileCategory> GetAll() {
@@ -22,11 +21,11 @@ namespace DeadlineManagementDB.Helper {
         }
 
         public void Remove(FileCategory model) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Update(FileCategory model) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,0 +1,178 @@
+﻿Latest C#.Net Interview Questions and Answers for freshers pdf free download
+ 
+1. What is C#.Net?
+ 
+2. What is the difference between realloc() and free()? 
+
+3. What is function overloading and operator overloading?
+ 
+4. What is the difference between declaration and definition? 
+
+5. What are the advantages of inheritance? 
+
+6. How do you write a function that can reverse a linked-list? 
+
+7. What do you mean by inline function?
+ 
+8. What is public, protected, private? 
+
+9. Tell how to check whether a linked list is circular?
+ 
+10. Why does this work?
+ 
+11. What are the advantages of inheritance?
+ 
+12. What is the difference between declaration and definition?
+ 
+13. What is the difference between an ARRAY and a LIST?
+ 
+14. What is a template? 
+
+15. Define a constructor - What it is and how it might be called? 
+
+16. Explain differences between eg. new() and malloc()? 
+
+17. What is the difference between class and structure? 
+
+18. What is RTTI?
+ 
+19. What is encapsulation? 
+20. What is an object? 
+21. How can you tell what shell you are running on UNIX system? 
+22. What do you mean by inheritance? 
+23. What is a COPY CONSTRUCTOR and when is it called? 
+24. What is Boyce Codd Normal form? 
+25. What is virtual class and friend class? 
+26. What are 2 ways of exporting a function from a DLL?
+ 
+27. What is the difference between an object and a class? 
+28. What is a class in .Net? 
+29. What is friend function? 
+30. What is abstraction? 
+31. What are virtual functions? 
+31. What is the difference between an external iterator and an internal iterator? Describe an 
+advantage of an external iterator?
+ 
+32. What is a scope resolution operator? 
+33. What do you mean by pure virtual functions? 
+34. What is polymorphism? Explain with an example? 
+35. What is the difference between char a*+ = “string”; and char ?p = “string”;?
+ 
+36. How do I initialize a pointer to a function?
+ 
+37. How do you link a C++ program to C functions? 
+
+
+38.	Explain the scope resolution operator? 
+39.	What are the differences between a C++ struct and C++ class? 
+40.	How does throwing and catching exceptions differ from using setjmp and longjmp? 
+41.	What is a default constructor? 
+42.	What is a conversion constructor? 
+43.	What is the difference between a copy constructor and an overloaded assignment operator? 
+44.	When should you use multiple inheritance? 
+45.	When is a template a better solution than a base class? 
+46.	What is a mutable member? 
+47.	What is an explicit constructor? 
+48.	What is the Standard Template Library (STL)?
+ 
+49.　What is the difference between Mutex and Binary semaphore?
+ 
+50.　In C++, what is the difference between method overloading and method overriding? 
+51.　What methods can be overridden in Java? 
+52.　What are the defining traits of an object-oriented language? 
+53.　Assignment Operator - What is the diffrence between a "assignment operator" and a "copy 
+constructor"? 
+54.　What are the types of STL containers? 
+55.　What is the need for a Virtual Destructor ? 
+56.　What is Object Oriented Programming ?
+ 
+58.　What’s an Object in C#.Net?
+ 
+59.　What is the relation between Classes and Objects ?
+ 
+60.　What is a Interface ?
+ 
+61.　What is difference between abstract classes and interfaces?
+ 
+62.　What is a delegate ?
+ 
+63.　What are events ? 
+64.　Do events have return type ?
+ 
+65.　Can event’s have access modifiers ?
+ 
+66.　What is shadowing ?
+ 
+67.　What is the difference between Shadowing and Overriding ?
+ 
+68.　What is the difference between delegate and events?
+ 
+69. If we inherit a class do the private variables also get inherited ?
+    
+70. What are the different accessibility levels defined in .NET?
+    
+71. What are similarities between Class and structure ?
+    
+72. What is the difference between Class and structure’s ?
+    
+73. What is Dispose method in .NET ?
+    
+74. What is the use of “OverRides” and “Overridable”keywords ?
+    
+75. Where are all .NET Collection classes located ?
+    
+76. What is ArrayList ?
+    
+77. What’s aHashTable ?
+ 
+78. What are queues and stacks ?
+    
+79. What is ENUM ?
+    
+    
+    
+    
+80. What is nested Classes ?
+    
+81. In what instances you will declare a constructor to be private?
+    
+82. Can we have different access modifiers on get/set methods of a property ?
+  
+83. If we write a goto or a return statement in try and catch block will the finally block execute ?
+    
+84. What is Indexer ?
+    
+85. Can two catch blocks be executed?
+    
+86. What is the difference between System.String and System.StringBuilder classes?
+ 
+87. Describe the accessibility modifier “protected internal”?
+ 
+88. What does the term immutable mean?
+ 
+89. What’s the advantage of using System.Text.StringBuilder over System.String?
+ 
+90. What’s the difference between the System.Array.CopyTo() and System.Array.Clone()?
+ 
+91. What’s the advantage of using System.Text.StringBuilder over System.String?
+ 
+92. What’s a satellite assembly?
+ 
+93. What are advantages and disadvantages of Microsoft-provided data provider classes in ADO.NET?
+ 
+94. Which one is trusted and which one is untrusted?
+ 
+95. What is a pre-requisite for connection pooling? 
+96. Does C# replace C++?
+ 
+97. So I can pass an instance of a value type to a method that takes an object as a parameter?
+ 
+98. Does the System.Exception class have any cool features?
+ 
+99. How can I check the type of an object at runtime?
+ 
+100. Can I get the name of a type at runtime?
+ 
+More C#.Net Interview Questions & Answers: Click Here
+ 
+More C#.Net Multiple Choice Questions : Click Here

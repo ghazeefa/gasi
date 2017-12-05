@@ -14,17 +14,17 @@ namespace DeadlineManagementDB.Helper {
         public void Add(Department model) {
             using (ctx) {
                 ctx.Entry(model.Branch).State = System.Data.Entity.EntityState.Unchanged;
-                ctx.departments.Add(model);
+                ctx.Departments.Add(model);
                 ctx.SaveChanges();
             }
         }
 
         public ICollection<Department> GetAll() {
-            return ctx.departments.ToList();
+            return ctx.Departments.Include(x => x.Branch).ToList(); 
         }
 
         public Department GetById(int Id) {
-            return ctx.departments.Include(x => x.Branch).FirstOrDefault(x => x.Id == Id);
+            return ctx.Departments.Include(x => x.Branch).FirstOrDefault(x => x.Id == Id);
         }
 
         public void Remove(Department model) {
@@ -36,7 +36,7 @@ namespace DeadlineManagementDB.Helper {
         }
 
         public List<Department> GetDepartmentsByBranchId(int braId) {
-            return ctx.departments.Include(x => x.Branch)
+            return ctx.Departments.Include(x => x.Branch)
                       .Where(x => x.Branch.Id == braId).ToList();
         }
     }

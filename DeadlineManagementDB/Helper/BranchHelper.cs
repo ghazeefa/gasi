@@ -13,28 +13,28 @@ namespace DeadlineManagementDB.Helper {
 
         public void Add(Branch model) {
             using (ctx) {
-                ctx.branches.Add(model);
+                ctx.Branches.Add(model);
                 ctx.SaveChanges();
             }
         }
 
         public ICollection<Branch> GetAll() {
-            return ctx.branches.ToList();
+            return ctx.Branches.ToList();
         }
 
         public Branch GetById(int Id) {
-            return ctx.branches.Include(x => x.Departments).FirstOrDefault(x => x.Id == Id);
+            return ctx.Branches.Include(x => x.Departments).FirstOrDefault(x => x.Id == Id);
         }
 
         public void Remove(Branch model) {
             using (ctx) {
                 var found = GetById(model.Id);
                 foreach (var depart in found.Departments) {
-                    ctx.departments.Remove(depart);
+                    ctx.Departments.Remove(depart);
                     ctx.SaveChanges();
                 }
 
-                ctx.branches.Remove(found);
+                ctx.Branches.Remove(found);
                 ctx.SaveChanges();
             }
         }
@@ -45,7 +45,7 @@ namespace DeadlineManagementDB.Helper {
 
 
         public List<Branch> GetBranchesByCompanyId(int  compId) {
-            return ctx.branches
+            return ctx.Branches
                 .Include(x => x.Company)
                 .Include(x=> x.Departments)
                 .Where(x => x.Company.Id == compId).ToList();

@@ -18,14 +18,23 @@ namespace DeadlineManagmentSystem.Controllers
     {
         // GET: UploadFile
 
-         CommonHelper uh = new CommonHelper();
+        CommonHelper uh = new CommonHelper();
         CategoriesHelper ch = new CategoriesHelper();
-        UploadFileHelper ufh = new UploadFileHelper();
+
+        FileUploadedHelper fileUploadedHelper = new FileUploadedHelper();
+        FileCategoryHelper fileCategoryHelper = new FileCategoryHelper();
+        
+        FileTypeHelper fileTypeHelper = new FileTypeHelper();
+
+        BranchHelper branchHelper = new BranchHelper();
+        DepartmentHelper departmentHelper = new DepartmentHelper();
+        FileToUploadedDetailHelper fileToUploadedDetailHelper = new FileToUploadedDetailHelper();
+
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.FileCategory = CommonHelper.ToSelectItemList(ch.GetFileCategory());
+            ViewBag.Branch = CommonHelper.ToSelectItemList(branchHelper.GetAll());
+            ViewBag.FileCategory = CommonHelper.ToSelectItemList(fileCategoryHelper.GetAll());
             //ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
             //ViewBag.Department = CommonHelper.ToSelectItemList(ch.GetDepartment());
             return View();
@@ -36,13 +45,25 @@ namespace DeadlineManagmentSystem.Controllers
             if (ModelState.IsValid)
             {
                 HttpPostedFileBase file = fileUpload;
-                ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-                ViewBag.FileCategory = CommonHelper.ToSelectItemList(ch.GetFileCategory());
-                tblFileUploaded fu = new tblFileUploaded();
-                fu.Dateofentery = DateTime.Today;
+                ViewBag.Branch = CommonHelper.ToSelectItemList(branchHelper.GetAll());
+                ViewBag.FileCategory = CommonHelper.ToSelectItemList(fileCategoryHelper.GetAll());
+                FileUploaded fu = new FileUploaded();
+                fu.DateOfEntery = DateTime.Today;
                 //fu.Filuploaded_Id = new FileToUploadedDetail { Id = uh.GetFileDetail(Convert.ToInt32(productmodel.Branch), Convert.ToInt32(productmodel.Department)) }; ;
-                fu.Filuploaded_Id = uh.GetFileDetail(Convert.ToInt32(filemodel.FileType), Convert.ToInt32(filemodel.Department));
+                //fu.FileUploadedDetail = new FileToUploadedDetail { Id = fileToUploadedDetailHelper.GetFileDetail(Convert.ToInt32(filemodel.FileType), Convert.ToInt32(filemodel.Department)) };
 ;
+                fu.FileUploadedDetail = new FileToUploadedDetail {
+                    DateToBeEntery = DateTime.Today,
+                    Department = new Department {
+                        Id = Convert.ToInt32(filemodel.Department),
+                        Branch = new Branch { Id = Convert.ToInt32(filemodel.Branch)}
+                    },
+                    FileType = new FileType {
+                        Id = Convert.ToInt32(filemodel.FileType),
+                        FileCategory = new FileCategory { Id = Convert.ToInt32(filemodel.FileCategory)}
+                    },
+                };
+
                 if (!string.IsNullOrEmpty(file.FileName))
                   { try
                     {
@@ -75,8 +96,8 @@ namespace DeadlineManagmentSystem.Controllers
 
                 //}
 
-                fu.User_Id =  1 ;
-                ufh.AddNewFile(fu);
+                fu.User = new User { Id = 1 };
+                fileUploadedHelper.Add(fu);
 
 
             }
@@ -88,7 +109,7 @@ namespace DeadlineManagmentSystem.Controllers
         public ActionResult IndexGrid(String param)
         {
             // Only grid string query values will be visible here.
-            return PartialView("_IndexGrid", uh.GetUploadedFiles());
+            return PartialView("_IndexGrid", fileUploadedHelper.GetAll());
         }
         [HttpGet]
         public ActionResult Branch(int id)
@@ -96,7 +117,7 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "Branch";
             m.Caption = "- Select Branch -";
-            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetBranch(id));
+            m.Values = CommonHelper.ToSelectItemList(branchHelper.GetById(id));
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
@@ -106,7 +127,7 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "Department";
             m.Caption = "- Select Department -";
-            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetDepartment( id ));
+            m.Values = CommonHelper.ToSelectItemList(departmentHelper.GetAll().Where(x => x.Branch.Id == id).ToList());
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
@@ -117,7 +138,7 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "FileType";
             m.Caption = "- Select File Type -";
-            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetFileType(id));
+            m.Values = CommonHelper.ToSelectItemList(fileTypeHelper.GetAll().Where(x=> x.FileCategory.Id== id).ToList());
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
@@ -140,16 +161,14 @@ namespace DeadlineManagmentSystem.Controllers
 
             //List<Vw_FileUploaded> model = uh.GetUploadedFile();
             List<GridModel> gm = new List<GridModel>();
-            uh.GetUploadedFiles().ToList().ForEach(X =>
-            {
-                gm.Add(new GridModel
-                {
-                    BranchName = X.BranchName,
-                    CompanyName = X.CompanyName,
-                    Id = X.Id,
-                    DepartmentName = X.DepartmentName,
-                    FileCategoryName = X.FileCategoryName,
-                    FileTypeName = X.FileTypeName
+            fileUploadedHelper.GetAll().ToList().ForEach(x => {
+                gm.Add(new GridModel {
+                    Id = x.Id,
+                    BranchName = x.FileUploadedDetail.Department.Branch.Name,
+                    CompanyName = x.FileUploadedDetail.Department.Branch.Company.Name,
+                    DepartmentName = x.FileUploadedDetail.Department.Name,
+                    FileCategoryName = x.FileUploadedDetail.FileType.FileCategory.Name,
+                    FileTypeName = x.FileUploadedDetail.FileType.Name
                 });
             });
             return PartialView("~/Views/Shared/_FileGrid.cshtml", gm);

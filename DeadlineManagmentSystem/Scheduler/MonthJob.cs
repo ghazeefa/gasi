@@ -14,12 +14,12 @@ namespace DeadlineManagmentSystem.Scheduler
     {
 
         CommonHelper h = new CommonHelper();
-        UploadFileHelper fh = new UploadFileHelper();
+        FileUploadedHelper fh = new FileUploadedHelper();
         public void Execute(IJobExecutionContext context)
         {
 
             // Send  Data
-            List<Vw_PendingFiles> p = h.GetPendingFiles(3);
+            //List<Vw_PendingFiles> p = h.GetPendingFiles(3);
             DateTime date = new DateTime();
             string deptName = "";
             string fileName = "";

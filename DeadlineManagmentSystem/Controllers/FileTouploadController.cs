@@ -15,30 +15,31 @@ namespace DeadlineManagmentSystem.Controllers
     public class FileTouploadController : Controller
     {
         // GET: FileToupload
+        private CategoriesHelper categoriesHelper = new CategoriesHelper();
+        private BranchHelper branchHelper = new BranchHelper();
+        private DepartmentHelper departmentHelper = new DepartmentHelper();
         CommonHelper uh = new CommonHelper();
-        CategoriesHelper ch = new CategoriesHelper();
-        UploadFileHelper ufh = new UploadFileHelper();
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.Filetype = CommonHelper.ToSelectItemList(ch.GetFileCategory());
+            ViewBag.Branch = CommonHelper.ToSelectItemList(branchHelper.GetAll());
+            ViewBag.Filetype = CommonHelper.ToSelectItemList(categoriesHelper.GetAll());
             //ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.Department = CommonHelper.ToSelectItemList(ch.GetDepartment());
+            ViewBag.Department = CommonHelper.ToSelectItemList(departmentHelper.GetAll());
             return View();
         
         }
 
         [HttpPost]
         public ActionResult Index(FileTobeUploadModel f)
-        {  ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.Filetype = CommonHelper.ToSelectItemList(ch.GetFileCategory());
+        {  ViewBag.Branch = CommonHelper.ToSelectItemList(branchHelper.GetAll());
+            ViewBag.Filetype = CommonHelper.ToSelectItemList(categoriesHelper.GetAll());
             //ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.Department = CommonHelper.ToSelectItemList(ch.GetDepartment());
+            ViewBag.Department = CommonHelper.ToSelectItemList(departmentHelper.GetAll());
             FileToUploadedDetail ft = new FileToUploadedDetail();
-            ft.department = new Department { Id = Convert.ToInt32(f.Department) } ;
-            ft.filetype = new FileType { Id = f.FileTypeId };
-             ft.Datetobeentery = Convert.ToDateTime(f.DateofDeadline);
+            ft.Department = new Department { Id = Convert.ToInt32(f.Department) } ;
+            ft.FileType = new FileType { Id = f.FileTypeId };
+             ft.DateToBeEntery = Convert.ToDateTime(f.DateofDeadline);
             return View();
 
         }

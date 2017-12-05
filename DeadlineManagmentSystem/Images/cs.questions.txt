@@ -1,0 +1,107 @@
+
+  what are generics.
+used for multi data types pasing..
+->what are anonymous methods.
+no, name function  e.g lamba
+-> what are itreators.
+itsa  sdata sturdtuter. it is uesed in array itrate, traverse in array
+->what are nullable values.->
+which we assigned null , string is by default null
+  what are object initialserz.
+intilizaing an object, 
+->what are anonymous types.->
+the claese dont have any name, genreated on run time
+what are extensions methods.->
+
+what are lambda expersions.->
+=> 
+  what are dynamic binding.->
+  
+what are named and optional arguments.->
+int... optional
+ what is class.->
+abstraction of a real life object..
+
+ what are polymorphisum.->
+an element have different types/..
+same function name have duifferentimplemention for deifent clases
+
+  what is string.->
+an class, data type
+ what is DB.-> 
+ ms sql, local db,
+What are machine and platform.->
+
+ what are dependence and Intedpendence.->
+low coupling, high copluing.. dc eg
+  what are Abstract Classes.->
+
+ what are Array and list.->
+an array is limited in size,
+list is a collection of object
+ what are overloading and overriding.->
+same name funciton but different arguments, is overloaduing
+concrete implemtnion of paraent class.
+same signature of function with diff implementatin
+  what are signed and unsigned data type e.g int or uint, string or ustring, long or ulong.->
+signed ++, unsigned +-
+  what are objects.->
+an obejct is an instance of class.
+ waht are interface.->
+abstarction of a class, 
+ what are objects.-> 
+what is inheritance.->
+class A:B
+what is instances.->
+
+  what is encapsulation.->
+ private and protected,
+ what are constructor.->
+it is an method have same class name , its modfier is public
+ what are static or dynamic member.->
+
+  
+
+
+
+IMP :: OOP in c# and MVC concepts Also DB Concepts.->
+
+
+what are namespaces?
+A namespace is just a collection of related classes..
+e.g 
+system.out.println("paki");
+ In this System is a namespace.
+            while 
+                 .out , .console, .Environment, .Math  are Classes.
+
+what is postfix and prefix?
+a++ is postfix while ++a is a prefix.
+Difference is that 
+if we used int a=10;
+console.writeline("value is {0} ,"++a);
+output is:
+11 because ++ is before a.
+        while
+same for a++ postfix.
+that a=10 then
+output is:
+10 because a++ means add or equal.
+n
+what are is and as operators?
+is operator returns true if a given object is a certain type.
+as operator converts a  given object to another type if possible.
+
+what are ternary operators?
+operators like a very similar to if-else statement, sign are ?:
+
+Operators Precedence::
+1. Multiplicative * / %
+2. Additive + -
+3. Comparision adn Type Testing < > <= >= is as
+4. Equality == !=
+5. Conditional AND &&
+6. Conditional OR ||
+7. Ternary ?:
+8. Assignment = *= /= %= += -=
+  
