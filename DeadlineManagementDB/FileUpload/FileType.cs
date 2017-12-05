@@ -9,14 +9,13 @@ namespace DeadlineManagementDB.FileUpload
 {
    public class FileType
     {
-        [Required]
-        [Key]
+
         public int Id { get; set; }//1
-        [Required]
+
         [Column(TypeName = "varchar")]
         [MaxLength(40)]
         public string Name { get; set; }//Leaves
-        [Required]
+
         public int ReviseagainMonths { get; set; }//1
 
 

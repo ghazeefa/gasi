@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using DeadlineManagmentSystem.Models
+
+@{
+    ViewBag.Title = "Register";
+
+    List<SelectListItem> branch = ViewBag.Branch;
+    List<SelectListItem> filetype = ViewBag.Filetype;
+    List<SelectListItem> department = ViewBag.Department;
+}
+@model FileTobeUploadModel
+@{
+    ViewBag.Title = "UPLOAD FILE";
+}
+<section class="forms">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Horizontal Form-->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-close">
+                        <div class="dropdown">
+                            <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                            <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                        </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                        <h3 class="h4">Files To be Upload</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>File form in order to upload file</p>
+                        @using (Html.BeginForm("index", "FileToupload", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                        {
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">File Type</label>
+                                <div class="col-sm-9 select">
+                                    @Html.DropDownList("FileTypeId", filetype, "- Select File Type -", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.FileTypeId, "", new { @class = "form-text" })
+                                    @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
+                                    @*<small class="form-text">Selection is must in order to save form</small>*@
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">BRANCH</label>
+                                <div class="col-sm-9 select">
+                                    @Html.DropDownList("Branch", branch, "- Select Company -", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.Branch, "", new { @class = "form-text" })
+                                    @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
+                                    @*<small class="form-text">Selection is must in order to save form</small>*@
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">DEPARTMENT</label>
+                                <div class="col-sm-9 select" id="department">
+
+                                    @Html.ValidationMessageFor(x => x.Department, "", new { @class = "form-text" })
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">Date of Deadline </label>
+                                <div class="input-group date form_date col-sm-9"  data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    @Html.TextBoxFor(x => x.DateofDeadline, new { @class = "mx-sm-3 form-contro",@id="inlineFormInput" })
+                                    @Html.ValidationMessageFor( x=> x.DateofDeadline, "", new { @style = "color:red" })
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove">x</span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar">=</span></span>
+                                </div>
+                                @*<input id="inlineFormInput" type="text" placeholder="Jane Doe" class="mx-sm-3 form-control">*@
+                            </div>
+                         
+
+                            @*<small class="form-text">Example help text that remains unchanged.</small>
+                                </div>
+                                                    @*<div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">DEPARTMENT</label>
+                                    <div class="col-sm-9 select">
+                                        @Html.DropDownList("Branch", branch, "- Select Branch -", new { @class = "form-control" })
+
+                                        <small class="form-text">Selection is must in order to save form</small>
+
+                                    </div>
+                                   </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">File Type</label>
+                                    <div class="col-sm-9 select">
+                                     @Html.DropDownList("Branch", branch, "- Select Branch -", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 form-control-label">UPLOAD FILE</label>
+                                    <input type="file" name="FileUpload" multiple />
+                                    @*<small class="form-text">Example help text that remains unchanged.</small>
+                                </div>*@
+                            <div class="form-group row">
+                                <div class="col-sm-9 offset-sm-3">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+       
+
+
+
+
+    </div>
+</section>
+
+@section myScript{
+    <script type="text/javascript">
+    $(function () {
+        //code to show create produc  t form
+        //$("#Company").click(function (event) {
+        //    event.preventDefault();
+        //});
+        //    $("#myModal").modal('show');
+        //});
+        //$("#createproduct").click(function (event) {
+        //    event.preventDefault();
+        //    $.ajax(
+        //        {
+        //            url: "/Product/index/",
+        //            type: "get"
+        //        }
+        //    ).done(function (result) {
+        //        //$("#dialogtitle").text("Add New Product");
+        //        $("#gridbody").html(result);
+        //        //$("#dialogsec").modal();
+
+        //    });
+
+        $("#Branch").change(function () {
+            var selectedID = $(this).val();
+            //var cid = $("#Company").select("option:selected").val();
+            //alert(cid);
+            //alert("hellooo");
+            $.ajax(
+                {
+
+                    url: "/UploadFile/Department/" + selectedID,
+                    type: "get"
+                }
+            ).done(function (result2) {
+                $("#department").html(result2);
+            });
+        });
+
+
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+
+
+        });
+    </script>
+}

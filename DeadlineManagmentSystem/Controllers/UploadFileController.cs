@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using DeadlineManagementDB.Helper;
 using System.Web.Mvc;
+using DeadlineManagementDB;
 using DeadlineManagmentSystem.Models;
 using DeadlineManagementDB.Supporting;
 using DeadlineManagementDB.FileUpload;
 using DeadlineManagementDB.Users;
+using System.Data.Entity;
 using System.IO;
 
 namespace DeadlineManagmentSystem.Controllers
@@ -23,23 +25,24 @@ namespace DeadlineManagmentSystem.Controllers
         public ActionResult Index()
         {
             ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-            ViewBag.Filetype= CommonHelper.ToSelectItemList(ch.GetFileType());
+            ViewBag.FileCategory = CommonHelper.ToSelectItemList(ch.GetFileCategory());
             //ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
             //ViewBag.Department = CommonHelper.ToSelectItemList(ch.GetDepartment());
             return View();
         }
         [HttpPost]
-        public ActionResult Index(UploadFileModel productmodel, HttpPostedFileBase fileUpload)
+        public ActionResult Index(UploadFileModel filemodel, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
                 HttpPostedFileBase file = fileUpload;
                 ViewBag.Branch = CommonHelper.ToSelectItemList(ch.GetBranch());
-                ViewBag.Filetype = CommonHelper.ToSelectItemList(ch.GetFileType());
-                FileUploaded fu = new FileUploaded();
+                ViewBag.FileCategory = CommonHelper.ToSelectItemList(ch.GetFileCategory());
+                tblFileUploaded fu = new tblFileUploaded();
                 fu.Dateofentery = DateTime.Today;
-                fu.filuploaded = new FileToUploadedDetail { Id = new CommonHelper().GetFileDetail(Convert.ToInt32(productmodel.Branch), Convert.ToInt32(productmodel.Department)) }; ;
-
+                //fu.Filuploaded_Id = new FileToUploadedDetail { Id = uh.GetFileDetail(Convert.ToInt32(productmodel.Branch), Convert.ToInt32(productmodel.Department)) }; ;
+                fu.Filuploaded_Id = uh.GetFileDetail(Convert.ToInt32(filemodel.FileType), Convert.ToInt32(filemodel.Department));
+;
                 if (!string.IsNullOrEmpty(file.FileName))
                   { try
                     {
@@ -69,23 +72,31 @@ namespace DeadlineManagmentSystem.Controllers
                 //{
                 //    //string url = "~/Images/" + file.FileName.Substring(file.FileName.LastIndexOf("."));
                 //    //string path = Server.MapPath(url);
-                   
+
                 //}
-                fu.user = new User { Id = 1 };
-                ufh.Add(fu);
+
+                fu.User_Id =  1 ;
+                ufh.AddNewFile(fu);
 
 
             }
 
             return View();
         }
-            [HttpGet]
+
+        [HttpGet]
+        public ActionResult IndexGrid(String param)
+        {
+            // Only grid string query values will be visible here.
+            return PartialView("_IndexGrid", uh.GetUploadedFile());
+        }
+        [HttpGet]
         public ActionResult Branch(int id)
         {
             DDLModel m = new DDLModel();
             m.Name = "Branch";
             m.Caption = "- Select Branch -";
-            m.Values = CommonHelper.ToSelectItemList(new BranchHelper().GetBranchesByCompanyId(id)); 
+            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetBranch(id));
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
@@ -95,10 +106,41 @@ namespace DeadlineManagmentSystem.Controllers
             DDLModel m = new DDLModel();
             m.Name = "Department";
             m.Caption = "- Select Department -";
-            m.Values = CommonHelper.ToSelectItemList(new DepartmentHelper().GetDepartmentsByBranchId(id));
+            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetDepartment( id ));
+            return PartialView("~/Views/Shared/_DDLView.cshtml", m);
+
+        }
+
+        [HttpGet]
+        public ActionResult FileType(int id)
+        {
+            DDLModel m = new DDLModel();
+            m.Name = "FileType";
+            m.Caption = "- Select File Type -";
+            m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetFileType(id));
             return PartialView("~/Views/Shared/_DDLView.cshtml", m);
 
         }
         
+        [HttpGet]
+        public ActionResult FileGrid()
+        {
+            //ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            //using (context)
+            //{
+            //    return View(context.Vw_FileUploaded.Set<GridModel>().OrderBy(model => model.Id));
+            //}
+
+
+            //GridModel m = new DDLModel();
+            //m.Name = "FileType";
+            //m.Caption = "- Select File Type -";
+            //m.Values = CommonHelper.ToSelectItemList(new CommonHelper().GetFileType(id));
+
+            List<Vw_FileUploaded> model = uh.GetUploadedFile();
+            return PartialView("~/Views/Shared/_FileGrid.cshtml", model);
+            //return PartialView("~/Views/Shared/_FileGrid.cshtml", model);
+
+        }
     }
 }

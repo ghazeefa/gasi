@@ -1,0 +1,17 @@
+﻿@using DeadlineManagmentSystem.Models
+@using GridMvc.Html
+@model IEnumerable<GridModel>
+
+@(Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(model => model.Id).Titled("Id");
+    columns.Add(model => model.BranchName).Titled("BranchName");
+
+    //columns.Add(model => model.Age).Titled("Age");
+    //columns.Add(model => model.Birthday).Titled("Birth date");
+    //columns.Add(model => model.IsWorking).Titled("Employed");
+}).WithPaging(10)
+    .Filterable()
+    .Sortable(true)
+)
+

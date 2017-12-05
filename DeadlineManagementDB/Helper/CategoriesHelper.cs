@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DeadlineManagementDB.Supporting;
+using System.Data.Entity;
 using DeadlineManagementDB.FileUpload;
 
-namespace DeadlineManagementDB.Helper {
-    public class CategoriesHelper
+namespace DeadlineManagementDB.Helper
+{
+   public class CategoriesHelper
     {
         //public List<Branch> GetSubBranches(Company c)
         //{
@@ -18,36 +23,36 @@ namespace DeadlineManagementDB.Helper {
 
         //}
 
-        public List<Branch> GetBranch()
+        public List<tblBranch> GetBranch()
         {
-            DeadlineManagementContext context = new DeadlineManagementContext();
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
             using (context)
             {
-                return (from a in context.branches select a).ToList();
+                return (from a in context.tblBranches select a).ToList();
+            }
+
+        }
+        public List<tblFileCategory> GetFileCategory()
+        {
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+                return (from a in context.tblFileCategories
+                        select a).ToList();
             }
 
 
         }
-        public List<FileType> GetFileType()
+        public List<tblDepartment> GetDepartment()
         {
-            DeadlineManagementContext context = new DeadlineManagementContext();
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
             using (context)
             {
-                return (from a in context.filetypes select a).ToList();
+                return (from a in context.tblDepartments select a).ToList();
             }
 
 
         }
-        //public List<Department> GetDepartment()
-        //{
-        //    DeadlineManagementContext context = new DeadlineManagementContext();
-        //    using (context)
-        //    {
-        //        return (from a in context.departments select a).ToList();
-        //    }
-
-
-        //}
 
 
 

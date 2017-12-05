@@ -10,6 +10,8 @@ namespace DeadlineManagementDB.FileUpload
 {
     public class FileUploaded
     {
+
+        [Key]
         public int Id { get; set; }
 
         [Column(TypeName = "varchar")]

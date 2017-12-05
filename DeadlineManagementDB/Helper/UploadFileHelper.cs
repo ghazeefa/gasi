@@ -5,39 +5,274 @@ using System.Text;
 using System.Threading.Tasks;
 using DeadlineManagementDB.FileUpload;
 using System.Data.Entity.Validation;
-using System.Data.Entity;
 
 namespace DeadlineManagementDB.Helper
 {
-    public class UploadFileHelper :IHelper<FileUploaded>
+    public class UploadFileHelper
     {
-        private DeadlineManagementContext context = new DeadlineManagementContext();
 
-        public void Add(FileUploaded model) {
-            using (context) {
-                context.fileuploades.Add(model);
-                context.SaveChanges();
+        public bool AddNewFile(tblFileUploaded f)
+        {
+
+
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+               
+                   
+                    using (context)
+                    {
+                    context.tblFileUploadeds.Add(f);
+                    context.SaveChanges();
+                    return true;
+                }
+
+                
+               
             }
         }
 
-        public ICollection<FileUploaded> GetAll() {
-            return context.fileuploades.Include(x => x.user).ToList();
-        }
+        public bool GetFilesUploaded(tblFileUploaded f)
+        {
 
-        public FileUploaded GetById(int Id) {
-            return context.fileuploades.Where(x => x.Id == Id).FirstOrDefault();
-        }
 
-        public void Remove(FileUploaded model) {
-            using (context) {
-                var found = GetById(model.Id);
-                context.fileuploades.Remove(found);
-                context.SaveChanges();
+            ComfortComplianceDeadlineDBEntities1 context = new ComfortComplianceDeadlineDBEntities1();
+            using (context)
+            {
+
+
+                using (context)
+                {
+                    context.tblFileUploadeds.Add(f);
+                    context.SaveChanges();
+                    return true;
+                }
+
+
+
             }
         }
 
-        public void Update(FileUploaded model) {
-            throw new NotImplementedException();
-        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

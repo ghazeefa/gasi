@@ -4,7 +4,7 @@
     ViewBag.Title = "Register";
 
     List<SelectListItem> branch = ViewBag.Branch;
-    List<SelectListItem> filetype = ViewBag.Filetype; 
+    List<SelectListItem> fileCategory = ViewBag.FileCategory; 
 }
 @model UploadFileModel
 @{
@@ -45,13 +45,23 @@
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">File Type</label>
                             <div class="col-sm-9 select">
-                                @Html.DropDownList("FileTypeId", filetype, "- Select File Type -", new { @class = "form-control" })
+                                @Html.DropDownList("FileCategoryId", fileCategory, "- Select File Type -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.FileCategoryId, "", new { @class = "form-text" })
+                                @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
+                                @*<small class="form-text">Selection is must in order to save form</small>*@
+                            </div>
+
+                        </div>
+                             <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">File Type</label>
+                            <div class="col-sm-9 select" id="filetype">
                                 @Html.ValidationMessageFor(x => x.FileTypeId, "", new { @class = "form-text" })
                                 @*@Html.ValidationMessageFor(x => x.Company, "", new { @class = "form-text" })*@
                                 @*<small class="form-text">Selection is must in order to save form</small>*@
                             </div>
 
                         </div>
+                      
                         <div class="form-group row">
                             <label class="col-sm-3 form-control-label">BRANCH</label>
                             <div class="col-sm-9 select">
@@ -66,7 +76,7 @@
                             <label class="col-sm-3 form-control-label">DEPARTMENT</label>
                             <div class="col-sm-9 select" id="department">
                               
-                                @Html.ValidationMessageFor(x => x.Department, "", new { @class = "form-text" })
+                                @Html.ValidationMessageFor(x => x.DepartmentId, "", new { @class = "form-text" })
 
                             </div>
                         </div>
@@ -136,6 +146,14 @@
                     </div>
                 </div>
             </div>
+
+            <div id="calltogrid" >
+               @*@Html.AjaxGrid(Url.Action("IndexGrid", new { param = "value" }))*@
+
+                 pnd penal
+            </div>
+
+
 
             <!-- Inline Form-->
             <div class="col-lg-8">
@@ -531,6 +549,16 @@
 @section myScript{
 <script type="text/javascript">
     $(function () {
+        alert("Hi");
+        $.ajax(
+                    {
+
+                           url: "/UploadFile/FileGrid/",
+                           type: "get"
+                       }
+                   ).done(function (result2) {
+                       $("#calltogrid").html(result2);
+                   });
         //code to show create produc  t form
         //$("#Company").click(function (event) {
         //    event.preventDefault();
@@ -566,9 +594,23 @@
                 $("#department").html(result2);
             });
         });
+         
 
-       
-        
+        $("#FileCategoryId").change(function () {
+            var selectedID = $(this).val();
+            //var cid = $("#Company").select("option:selected").val();
+            //alert(cid);
+            //alert("hellooo");
+            $.ajax(
+                {
+
+                    url: "/UploadFile/FileType/" + selectedID,
+                    type: "get"
+                }
+            ).done(function (result2) {
+                $("#filetype").html(result2);
+            });
+        });
         //$("#branch").change(function () {
         //        alert("Thanks to GOD");
         //        var selectedID = $("#branch").val();
